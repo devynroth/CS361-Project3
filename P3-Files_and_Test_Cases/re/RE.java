@@ -76,12 +76,22 @@ public class RE implements REInterface {
      */
     private NFA arrayToNFA(ArrayList<NFAState> list) {
         NFA nfa = new NFA();
+        LinkedHashSet<Character> alphabet = new LinkedHashSet<>();
+        alphabet.add('a');
+        alphabet.add('b');
+        nfa.addAbc(alphabet);
         nfa.addNFAStates(new LinkedHashSet<>(list));
         nfa.addStartState(list.get(0).getName());
         nfa.addFinalState(list.get(list.size() - 1).getName());
         return nfa;
     }
 
+    /**
+     * Checks whether c1 comes first in the order of operations or not
+     * @param c1 First character to be checked
+     * @param c2 Second character to be checked
+     * @return True if c1 is first in the OOP, otherwise false
+     */
     private boolean orderOP(char c1, char c2) {
         return c1 != '*' && c1 != '|';
     }
