@@ -11,9 +11,9 @@ public class RE implements REInterface {
     // current state ID
     private int currentState;
     // stack to store NFA states
-    private final Stack<ArrayList<NFAState>> stateStack = new Stack<ArrayList<NFAState>>();
+    private final Stack<ArrayList<NFAState>> stateStack = new Stack<>();
     // stack to store order of operators
-    private final Stack<Character> operatorStack = new Stack<Character>();
+    private final Stack<Character> operatorStack = new Stack<>();
 
     /**
      * Constructor
@@ -48,7 +48,7 @@ public class RE implements REInterface {
                 operatorStack.pop();
                 next();
             } else {                            // else if there are more operations and the current character takes priority, operate
-                while (!operatorStack.isEmpty() && orderOP(peek(), operatorStack.get(operatorStack.size() - 1)))
+                while (!operatorStack.isEmpty() && orderOP(peek()))
                     operate();
                 operatorStack.push(next());
             }
@@ -87,13 +87,12 @@ public class RE implements REInterface {
     }
 
     /**
-     * Checks whether c1 comes first in the order of operations or not
-     * @param c1 First character to be checked
-     * @param c2 Second character to be checked
-     * @return True if c1 is first in the OOP, otherwise false
+     * Checks whether c comes first in the order of operations or not
+     * @param c First character to be checked
+     * @return True if c is first in the OOP, otherwise false
      */
-    private boolean orderOP(char c1, char c2) {
-        return c1 != '*' && c1 != '|';
+    private boolean orderOP(char c) {
+        return c != '*' && c != '|';
     }
 
     /**
