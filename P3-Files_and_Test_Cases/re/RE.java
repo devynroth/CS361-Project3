@@ -2,45 +2,32 @@ package re;
 
 import fa.nfa.NFA;
 
+import java.util.Stack;
+
 public class RE implements REInterface {
+    // incremented and used to name a state each time one is added
+    private int currentState;
     private String regEx;
 
-    /**
-     * Constructor
-     * @param regEx Regular expression to be parsed
-     */
+    private Stack<NFA> nfaStack = new Stack<>();
+
     public RE(String regEx) {
         this.regEx = regEx;
     }
 
-    /**
-     * Get the NFA from a regEx
-     * @return NFA based on the given regEx
-     */
     @Override
     public NFA getNFA() {
+        currentState = 0;
+        return null;
+    }
+
+    private String getNextFactor() {
         return null;
     }
 
     /**
-     * TODO: Do some factoring and implement this method
-     * @return
-     */
-    private NFA factor() {
-        NFA baseNFA = base();
-        return baseNFA;
-    }
-
-    /**
-     * TODO: Figure out why tf this method is so based and implement it
-     * @return
-     */
-    private NFA base() {
-        return new NFA();
-    }
-
-    /**
      * Get the next symbol without consuming it
+     *
      * @return Next symbol at start of regEx
      */
     private char peek() {
@@ -49,6 +36,7 @@ public class RE implements REInterface {
 
     /**
      * Remove the next symbol from regEx
+     *
      * @param c Symbol to be consumed
      */
     private void eat(char c) {
@@ -60,6 +48,7 @@ public class RE implements REInterface {
 
     /**
      * Eats the next symbol and returns it
+     *
      * @return Next symbol
      */
     private char next() {
@@ -70,6 +59,7 @@ public class RE implements REInterface {
 
     /**
      * Checks if there are more symbols to be parsed
+     *
      * @return True if regEx is not empty
      */
     private boolean more() {
