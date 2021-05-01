@@ -5,6 +5,15 @@ import fa.nfa.NFAState;
 
 import java.util.*;
 
+/**
+This class takes a given regular expression and dissects it, storing the operators and pieces of the alphabet
+in respective stacks, before going through bit by bit and performing each operation that is found and creating the 
+corresponding necessary states before stitching everything together to make an NFA that tests if
+given strings are part of the original regular expression.
+
+@author Phillip Bruce
+@author Devyn Roth
+ */
 public class RE implements REInterface {
     // regular expression to be converted
     private String regEx;
